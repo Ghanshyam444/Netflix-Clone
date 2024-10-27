@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon backend/index.js",
-    "build":"npm install && npm install --prefix netflix && npm run build --prefix nerflix",
+    "build":"npm install && npm install --prefix netflix && npm run build --prefix netflix",
     "start": "nodemon backend/index.js"
   },
   "author": "",
