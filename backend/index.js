@@ -8,36 +8,32 @@ import userRoute from "./routes/userRoute.js";
 import cors from "cors";
 import path from "path";
 
-
-
 databaseConnection();
 
 dotenv.config({
-    path:".env"
-})
+  path: ".env",
+});
 const _dirname = path.resolve();
 
-
-
 const app = express();
-//middlewares 
-app.use(express.urlencoded({extended:true}));
+//middlewares
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 const corsOptions = {
-    origin:'http://localhost:3000',
-    credentials:true
-}
+  origin: "https://netflix-clone-h3j1.onrender.com",
+  credentials: true,
+};
 app.use(cors(corsOptions));
- 
+
 // api
 app.use("/api/v1/user", userRoute);
 app.use(express.static(path.join(_dirname, "/netflix/build")));
 
 app.get("*", (req, res) => {
-    res.sendFile(path.resolve(_dirname, "/netflix/build/index.html"));
-  });
+  res.sendFile(path.resolve(_dirname, "/netflix/build/index.html"));
+});
 
-app.listen(process.env.PORT,() => {
-    console.log(`Server listen at port ${process.env.PORT}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Server listen at port ${process.env.PORT}`);
 });
